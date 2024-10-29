@@ -15,22 +15,29 @@ def main ():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    updatable.add(player)
     Player.containers = (updatable, drawable)
+
+#    player = Player(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2)
+
+    print("Updatable group contents:", updatable.sprites())
+    print("Drawable group contents:", drawable.sprites())
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-
-
-        
-        for obj in updatable:
-            obj.update(dt)
-        
+            
+        for tobj in updatable:
+            tobj.update(dt)
+        player.update(dt)
         screen.fill("black")
 
-        for obj in drawable:
-            obj.draw(screen)
+        for tobj in drawable:
+            tobj.draw(screen)
+
+
+        player.draw(screen)
 
         pygame.display.flip()
 
